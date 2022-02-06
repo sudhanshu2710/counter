@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Counter } from "./component/Counter";
+import InputCount from "./component/InputCount";
+import classes from "./App.module.css";
 
 function App() {
+  const [count, setCount] = useState();
+  console.log(count + "this is in app");
+  const setCountHandler = (count_) => {
+    setCount(count_);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.App}>
+      {!count && <InputCount setCount={setCountHandler} />}
+      {count && <Counter countRecived={count} />}
     </div>
   );
 }
